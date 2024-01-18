@@ -1,6 +1,6 @@
 import express from "express";
 import db from './config/dbConnect.js';
-import users from "./routers/users.router.js";
+import auth from "./routers/auth.router.js";
 const app = express();
 
 try {
@@ -10,8 +10,8 @@ try {
     console.error(error);
 }
 
-app.use(express.json());
-app.use(users);
+app.use(express.json(), express.urlencoded({extended: true}));
+app.use(auth);
 
 
 app.listen(5000, () => console.log('app listen at port 5000'));
